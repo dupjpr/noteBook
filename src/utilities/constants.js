@@ -1,10 +1,12 @@
 const LOADING = 'LOADING';
-const GET_PROFILE = 'GET_PROFILE';
+const GET_DATA_API = 'GET_DATA_API';
 const ERROR = 'ERROR';
+const NEW_NOTE_FLAG = 'NEW_NOTE_FLAG';
 
 export { 
   LOADING, 
-  GET_PROFILE, 
-  ERROR
+  GET_DATA_API, 
+  ERROR,
+  NEW_NOTE_FLAG
  };
  

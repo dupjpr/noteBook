@@ -1,7 +1,26 @@
+import { useDispatch } from "react-redux";
+
+import { homeActions } from "./headerActions";
+
 const Header = () => {
-  return ( 
-    <header>this is the start</header>
-   );
+  
+  const dispatch = useDispatch();
+
+  function handleclick() {
+    dispatch(homeActions(true))
+  }
+
+  return (
+    <header>
+
+      <button
+        onClick={handleclick}
+      >
+        new note
+      </button>
+
+    </header>
+  );
 }
- 
+
 export default Header;

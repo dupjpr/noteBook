@@ -1,19 +1,14 @@
 import {
-  LOADING,
-  GET_PROFILE,
+  GET_DATA_API,
   ERROR
 } from '../utilities/constants';
 import { _http } from "../utilities/httpRequest";
 
-const demoUrl = 'https://pokeapi.co/api/v2/ability';
+const demoUrl = 'https://type.fit/api/quotes';
 
 const actions = {
-  loading: (boolean = false) => ({
-    type: LOADING,
-    payload: boolean
-  }),
   getData: (data) => ({
-    type: GET_PROFILE,
+    type: GET_DATA_API,
     payload: data
   }),
   error: (data) => ({
@@ -26,11 +21,9 @@ const { loading, getData, error } = actions;
 
 const getDataAction = () => {
   return dispatch => {
-    dispatch(loading(true));
     _http.GET(demoUrl)
       .then((res) => {
         dispatch(getData(res))
-        dispatch(loading(false));
       })
       .catch((e) => dispatch(error(e)));
   }

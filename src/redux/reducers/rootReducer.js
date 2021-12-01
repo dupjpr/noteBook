@@ -1,18 +1,13 @@
 import {
-  LOADING,
-  GET_PROFILE,
-  ERROR
+  GET_DATA_API,
+  ERROR,
+  NEW_NOTE_FLAG
 } from '../../utilities/constants';
 
 const rootReducer = (state, action) => {
 
   switch (action.type) {
-    case LOADING:
-      return {
-        ...state,
-        loading: action.payload
-      }
-    case GET_PROFILE:
+    case GET_DATA_API:
       return {
         ...state,
         data: action.payload
@@ -22,6 +17,12 @@ const rootReducer = (state, action) => {
         ...state,
         error: action.payload
       }
+    case NEW_NOTE_FLAG:
+      return {
+        ...state,
+        newNoteFlag: action.payload
+      }
+   
     default:
       return state
   }
