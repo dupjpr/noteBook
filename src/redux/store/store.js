@@ -5,7 +5,9 @@ import thunk from 'redux-thunk';
 
 const initialState = {
   data: '',
+  loadingFlag: true,
   newNoteFlag: false,
+  textInput: ''
 }
 
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));

@@ -5,13 +5,14 @@ import './home.style.scss';
 import Header from "../header/Header";
 import Notes from "../notes/Notes";
 import NotesCreator from "../notesCreator/NotesCreator";
+import Loading from "../UI Library/loading/Loading";
 
 const DefaultComponent = () => {
 
   const storeData = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const {data} = storeData
+  const { loadingFlag } = storeData
 
   useEffect(() => {
     dispatch(getDataAction());
@@ -24,7 +25,7 @@ const DefaultComponent = () => {
     <section className='sectionHome-container'>
       <Header />
       <Notes />
-      {data && <NotesCreator />}
+      {loadingFlag ? <Loading /> : <NotesCreator />}
     </section>
   );
 }

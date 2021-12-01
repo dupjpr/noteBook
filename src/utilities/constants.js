@@ -2,11 +2,13 @@ const LOADING = 'LOADING';
 const GET_DATA_API = 'GET_DATA_API';
 const ERROR = 'ERROR';
 const NEW_NOTE_FLAG = 'NEW_NOTE_FLAG';
+const TRAKING_NOTE = 'TRAKING_NOTE';
 
 export { 
   LOADING, 
   GET_DATA_API, 
   ERROR,
-  NEW_NOTE_FLAG
+  NEW_NOTE_FLAG,
+  TRAKING_NOTE
  };
  

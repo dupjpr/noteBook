@@ -1,6 +1,7 @@
 import {
   GET_DATA_API,
-  ERROR
+  ERROR,
+  LOADING
 } from '../utilities/constants';
 import { _http } from "../utilities/httpRequest";
 
@@ -11,19 +12,24 @@ const actions = {
     type: GET_DATA_API,
     payload: data
   }),
+  loadingData: (data) => ({
+    type: LOADING,
+    payload: data
+  }),
   error: (data) => ({
     type: ERROR,
     payload: data
   })
 }
 
-const { loading, getData, error } = actions;
+const { loadingData, getData, error } = actions;
 
 const getDataAction = () => {
   return dispatch => {
     _http.GET(demoUrl)
       .then((res) => {
-        dispatch(getData(res))
+        dispatch(getData(res));
+        dispatch(loadingData(false));
       })
       .catch((e) => dispatch(error(e)));
   }

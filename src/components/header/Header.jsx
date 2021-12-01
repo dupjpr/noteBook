@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
+import Button from "../UI Library/button/Button";
 
 import { homeActions } from "./headerActions";
 
 const Header = () => {
-  
+
   const dispatch = useDispatch();
 
   function handleclick() {
@@ -12,13 +13,10 @@ const Header = () => {
 
   return (
     <header>
-
-      <button
-        onClick={handleclick}
-      >
-        new note
-      </button>
-
+      <Button
+        title='New Note'
+        event={handleclick}
+      />
     </header>
   );
 }

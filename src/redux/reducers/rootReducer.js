@@ -1,7 +1,9 @@
 import {
   GET_DATA_API,
   ERROR,
-  NEW_NOTE_FLAG
+  LOADING,
+  NEW_NOTE_FLAG,
+  TRAKING_NOTE
 } from '../../utilities/constants';
 
 const rootReducer = (state, action) => {
@@ -17,12 +19,21 @@ const rootReducer = (state, action) => {
         ...state,
         error: action.payload
       }
+    case LOADING:
+      return {
+        ...state,
+        loadingFlag: action.payload
+      }
     case NEW_NOTE_FLAG:
       return {
         ...state,
         newNoteFlag: action.payload
       }
-   
+    case TRAKING_NOTE:
+      return {
+        ...state,
+        textInput: action.payload
+      }
     default:
       return state
   }
