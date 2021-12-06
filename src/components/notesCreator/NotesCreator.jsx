@@ -20,12 +20,13 @@ const NotesCreator = () => {
 
   const handleChange = (e) => {
     const target = e.target;
-    dispatch(trakingNote(target.value))
+    dispatch(trakingNote(target.value));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(submitNote({note:textInput}))
+    textInput && dispatch(submitNote({note:textInput}));
+    dispatch(trakingNote(''));
   }
 
   return (
