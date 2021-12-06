@@ -16,6 +16,7 @@ const Header = () => {
       <Button
         title='New Note'
         event={handleclick}
+        icon={<i className="far fa-file"></i>}
       />
     </header>
   );

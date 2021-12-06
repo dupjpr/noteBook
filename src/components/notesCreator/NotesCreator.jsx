@@ -40,6 +40,7 @@ const NotesCreator = () => {
         <Button
           title='save'
           type='submit'
+          icon={<i className="far fa-save"></i>}
         />
       </form>
         :

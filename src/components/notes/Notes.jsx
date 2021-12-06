@@ -14,7 +14,9 @@ const Notes = () => {
       {notes.map(({ note }) => (
         <div key={uuidv4()}>
           <div >{note}</div>
-          <Button title='delete' />
+          <Button 
+          title='delete'
+          icon={<i className="far fa-trash-alt"></i>} />
         </div>))}
     </div>
   );
