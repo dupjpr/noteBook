@@ -1,8 +1,11 @@
 
-const Button = ({ title, event }) => {
+const Button = ({ title, event, type }) => {
 
   return (
-    <button onClick={event}>
+    <button
+      onClick={event}
+      type={type}
+    >
       {title}
     </button>
   );

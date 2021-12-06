@@ -3,7 +3,8 @@ import {
   ERROR,
   LOADING,
   NEW_NOTE_FLAG,
-  TRAKING_NOTE
+  TRAKING_NOTE,
+  SAVE_NOTE
 } from '../../utilities/constants';
 
 const rootReducer = (state, action) => {
@@ -33,6 +34,11 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         textInput: action.payload
+      }
+    case SAVE_NOTE:
+      return {
+        ...state,
+        notes: [...state.notes, action.payload]
       }
     default:
       return state
