@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 const NotesCreator = () => {
@@ -25,13 +27,19 @@ const NotesCreator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    textInput && dispatch(submitNote({note:textInput}));
+    textInput && dispatch(submitNote(
+      {
+        id: uuidv4(),
+        note: textInput,
+        date: new Date()
+      }
+    ));
     dispatch(trakingNote(''));
   }
 
   return (
     <div>
-      {newNoteFlag ? <form onSubmit={(e)=>handleSubmit(e)}>
+      {newNoteFlag ? <form onSubmit={(e) => handleSubmit(e)}>
         <textarea
           type="text"
           onChange={(e) => handleChange(e)}

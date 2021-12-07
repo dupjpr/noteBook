@@ -4,6 +4,7 @@ const ERROR = 'ERROR';
 const NEW_NOTE_FLAG = 'NEW_NOTE_FLAG';
 const TRAKING_NOTE = 'TRAKING_NOTE';
 const SAVE_NOTE = 'SAVE_NOTE';
+const NEW_LIST = 'NEW_LIST';
 
 export { 
   LOADING, 
@@ -11,6 +12,7 @@ export {
   ERROR,
   NEW_NOTE_FLAG,
   TRAKING_NOTE,
-  SAVE_NOTE
+  SAVE_NOTE,
+  NEW_LIST
  };
  

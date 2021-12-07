@@ -4,7 +4,8 @@ import {
   LOADING,
   NEW_NOTE_FLAG,
   TRAKING_NOTE,
-  SAVE_NOTE
+  SAVE_NOTE,
+  NEW_LIST,
 } from '../../utilities/constants';
 
 const rootReducer = (state, action) => {
@@ -39,6 +40,11 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         notes: [...state.notes, action.payload]
+      }
+    case NEW_LIST:
+      return {
+        ...state,
+        notes: action.payload
       }
     default:
       return state
