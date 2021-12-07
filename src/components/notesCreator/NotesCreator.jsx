@@ -30,6 +30,7 @@ const NotesCreator = () => {
       dispatch(submitNote(objectNote));
     });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleChange = (e) => {
@@ -55,7 +56,7 @@ const NotesCreator = () => {
 
     dispatch(trakingNote(''));
 
-    // dispatch(headerActions(false));
+    dispatch(headerActions(false));
   }
 
   return (
