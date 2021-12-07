@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import Button from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
 import { v4 as uuidv4 } from 'uuid';
-
-
 
 const NotesCreator = () => {
 
@@ -12,6 +11,8 @@ const NotesCreator = () => {
   const dispatch = useDispatch();
 
   const { data, newNoteFlag, textInput } = storeData;
+
+  const notesKey = Object.keys(localStorage);
 
   const randomQuote = () => {
 
@@ -21,21 +22,39 @@ const NotesCreator = () => {
 
   };
 
+  useEffect(() => {
+
+    notesKey.forEach((key) => {
+      const stringNote = localStorage.getItem(key);
+      const objectNote = JSON.parse(stringNote);
+      dispatch(submitNote(objectNote));
+    });
+
+  }, [])
+
   const handleChange = (e) => {
     const target = e.target;
     dispatch(trakingNote(target.value));
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
-    textInput && dispatch(submitNote(
-      {
-        id: uuidv4(),
-        note: textInput,
-        date: new Date()
-      }
-    ));
+
+    const noteToStore = {
+      id: uuidv4(),
+      note: textInput,
+      date: new Date()
+    }
+
+    textInput && dispatch(submitNote(noteToStore));
+
+    const stringNote = JSON.stringify(noteToStore);
+
+    textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
+
     dispatch(trakingNote(''));
+
     // dispatch(headerActions(false));
   }
 
