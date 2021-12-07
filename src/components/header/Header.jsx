@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
 import Button from "../UI Library/button/Button";
 
-import { homeActions } from "./headerActions";
+import { headerActions } from "./headerActions";
 
 const Header = () => {
 
   const dispatch = useDispatch();
 
   function handleclick() {
-    dispatch(homeActions(true))
+    dispatch(headerActions(true));
   }
 
   return (

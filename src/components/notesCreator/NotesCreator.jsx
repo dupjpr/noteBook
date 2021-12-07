@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
+import { headerActions } from "../header/headerActions";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -35,6 +36,7 @@ const NotesCreator = () => {
       }
     ));
     dispatch(trakingNote(''));
+    // dispatch(headerActions(false));
   }
 
   return (

@@ -11,7 +11,7 @@ const actions = {
 
 const { newNote } = actions;
 
-const homeActions = (boolean) => {
+const headerActions = (boolean) => {
   return dispatch => {
 
     dispatch(newNote(boolean))
@@ -19,4 +19,4 @@ const homeActions = (boolean) => {
   }
 }
 
-export { homeActions };
+export { headerActions };

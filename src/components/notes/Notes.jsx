@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI Library/button/Button";
 import { trakingNote } from "../notesCreator/notesCreatorActions";
+import { headerActions } from "../header/headerActions";
 import { editList } from "./notesActions";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,6 +17,7 @@ const Notes = () => {
     dispatch(trakingNote(filterNote[0].note));
     const newList = notes.filter((item) => item.id !== id);
     dispatch(editList(newList));
+    // dispatch(headerActions(true));
   };
 
   const handleDelete = (id) => {
