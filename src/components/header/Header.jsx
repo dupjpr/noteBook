@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import Button from "../UI Library/button/Button";
-
 import { headerActions } from "./headerActions";
+
+import './header.style.scss';
 
 const Header = () => {
 
@@ -12,7 +13,7 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <header className='header-container'>
       <Button
         title='New Note'
         event={handleclick}

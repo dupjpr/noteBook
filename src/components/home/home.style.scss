@@ -6,4 +6,13 @@
   width: 100%;
   height: 100%;
   background-color: aquamarine;
+};
+
+.notes-container{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 100%;
 }
+

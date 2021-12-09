@@ -5,6 +5,8 @@ import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
 import { v4 as uuidv4 } from 'uuid';
 
+import './noteCReator.style.scss';
+
 const NotesCreator = () => {
 
   const storeData = useSelector(state => state);
@@ -56,11 +58,11 @@ const NotesCreator = () => {
 
     dispatch(trakingNote(''));
 
-    dispatch(headerActions(false));
+    textInput && dispatch(headerActions(false));
   }
 
   return (
-    <div>
+    <div className='noteCreator-container'>
       {newNoteFlag ? <form onSubmit={(e) => handleSubmit(e)}>
         <textarea
           type="text"

@@ -5,6 +5,8 @@ import { headerActions } from "../header/headerActions";
 import { editList } from "./notesActions";
 import { v4 as uuidv4 } from 'uuid';
 
+import './notes.style.scss';
+
 const Notes = () => {
 
   const storeData = useSelector(state => state);
@@ -28,7 +30,7 @@ const Notes = () => {
   }
 
   return (
-    <div>
+    <div className='notesStore-container'>
       {notes.map(({ note, id }) => (
         <div
           key={uuidv4()}

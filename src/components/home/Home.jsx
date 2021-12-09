@@ -22,8 +22,10 @@ const DefaultComponent = () => {
   return (
     <section className='sectionHome-container'>
       <Header />
-      <Notes />
-      {loadingFlag ? <Loading /> : <NotesCreator />}
+      <div className='notes-container'>
+        <Notes />
+        {loadingFlag ? <Loading /> : <NotesCreator />}
+      </div>
     </section>
   );
 }
