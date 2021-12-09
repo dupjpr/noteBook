@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Button from "../UI Library/button/Button";
+import CustomButton from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
 import { v4 as uuidv4 } from 'uuid';
+import TextCard from "../UI Library/textCard/TextCard";
+
 
 const NotesCreator = () => {
 
@@ -67,17 +69,14 @@ const NotesCreator = () => {
           onChange={(e) => handleChange(e)}
           value={textInput}
         />
-        <Button
-          title='save'
+        <CustomButton
+          title='Send'
           type='submit'
-          icon={<i className="far fa-save"></i>}
+          icon={<i className="far fa-paper-plane"></i>}
         />
       </form>
         :
-        <>
-          <div>{randomQuote().text}</div>
-          <div>{randomQuote().author}</div>
-        </>
+        <TextCard info={randomQuote}/>
       }
     </div>
   );

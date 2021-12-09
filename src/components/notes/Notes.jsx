@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../UI Library/button/Button";
+import CustomButton from "../UI Library/button/Button";
+import CustomIconButton from '../UI Library/iconButton/CustomIconButton'
 import { trakingNote } from "../notesCreator/notesCreatorActions";
 import { headerActions } from "../header/headerActions";
 import { editList } from "./notesActions";
@@ -34,10 +35,11 @@ const Notes = () => {
           key={uuidv4()}
         >
           <div onClick={() => handleEdit(id)}>{note}</div>
-          <Button
-            title='delete'
+          <CustomIconButton
+            color='primary'
             event={() => handleDelete(id)}
             icon={<i className="far fa-trash-alt"></i>}
+            label='delete'
           />
         </div>))}
     </div>
