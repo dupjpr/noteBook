@@ -56,7 +56,7 @@ const NotesCreator = () => {
 
     dispatch(trakingNote(''));
 
-    dispatch(headerActions(false));
+    textInput && dispatch(headerActions(false));
   }
 
   return (
