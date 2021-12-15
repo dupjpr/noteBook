@@ -19,6 +19,7 @@ const DefaultComponent = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(storeData);
   return (
     <section className='sectionHome-container'>
       <Header />

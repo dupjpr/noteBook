@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Button from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
+import { idNoteSelect } from "../notes/notesActions";
 import { v4 as uuidv4 } from 'uuid';
 
 const NotesCreator = () => {
@@ -10,7 +11,7 @@ const NotesCreator = () => {
   const storeData = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const { data, newNoteFlag, textInput } = storeData;
+  const { data, newNoteFlag, textInput, notes, noteID } = storeData;
 
   const notesKey = Object.keys(localStorage);
 
@@ -21,6 +22,10 @@ const NotesCreator = () => {
     return quote
 
   };
+
+  let notesLength = notes.length;
+
+  console.log(notesLength);
 
   useEffect(() => {
 
@@ -42,21 +47,56 @@ const NotesCreator = () => {
 
     e.preventDefault();
 
-    const noteToStore = {
-      id: uuidv4(),
-      note: textInput,
-      date: new Date()
+    if (notesLength) {
+
+      
+      const check = notes.some(({id}) => id === noteID );
+      
+      console.log(check);
+      dispatch(idNoteSelect(''));
+      
+      if(check){
+        const storeNote = JSON.parse(localStorage.getItem(noteID));
+        storeNote.note = textInput;
+        textInput && dispatch(submitNote(storeNote));
+        const stringNote = JSON.stringify(storeNote);
+        textInput && localStorage.setItem(`${noteID}`, stringNote)
+      } else {
+        const noteToStore = {
+          id: uuidv4(),
+          note: textInput,
+          date: new Date()
+        }
+  
+        textInput && dispatch(submitNote(noteToStore));
+  
+        const stringNote = JSON.stringify(noteToStore);
+  
+        textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
+      }
+
+
+    } else {
+
+      const noteToStore = {
+        id: uuidv4(),
+        note: textInput,
+        date: new Date()
+      }
+
+      textInput && dispatch(submitNote(noteToStore));
+
+      const stringNote = JSON.stringify(noteToStore);
+
+      textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
+
+      console.log('no hay nada');
     }
-
-    textInput && dispatch(submitNote(noteToStore));
-
-    const stringNote = JSON.stringify(noteToStore);
-
-    textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
 
     dispatch(trakingNote(''));
 
     textInput && dispatch(headerActions(false));
+
   }
 
   return (

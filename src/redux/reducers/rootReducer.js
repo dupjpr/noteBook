@@ -6,6 +6,7 @@ import {
   TRAKING_NOTE,
   SAVE_NOTE,
   NEW_LIST,
+  NOTE_ID
 } from '../../utilities/constants';
 
 const rootReducer = (state, action) => {
@@ -45,6 +46,11 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         notes: action.payload
+      }
+    case NOTE_ID:
+      return {
+        ...state,
+        noteID: action.payload
       }
     default:
       return state
