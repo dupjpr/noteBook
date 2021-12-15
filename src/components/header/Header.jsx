@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import CustomButton from "../UI Library/button/Button";
-import { Container } from "@mui/material";
 
 import { headerActions } from "./headerActions";
 
@@ -13,15 +12,13 @@ const Header = () => {
   }
 
   return (
-    <Container
-      component='header'
-    >
+    <header>
       <CustomButton
         title='New Note'
         event={handleclick}
         icon={<i className="far fa-file"></i>}
       />
-    </Container>
+    </header>
   );
 }
 

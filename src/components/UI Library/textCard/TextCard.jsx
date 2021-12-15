@@ -1,21 +1,32 @@
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 const TextCard = ({ info }) => {
   return (
-    <div>
+    <Box>
       <Typography
         variant='h6'
         component='div'
+        sx={
+          {
+            textAlign: 'justify'
+          }
+        }
       >
         {info().text}
       </Typography>
       <Typography
-        variant='h6'
-        component='div'
+        component='p'
+        sx={
+          {
+            textAlign: 'right',
+            marginTop: '1.5%'
+          }
+        }
       >
         {info().author}
       </Typography>
-    </div>
+    </Box>
   );
 }
 

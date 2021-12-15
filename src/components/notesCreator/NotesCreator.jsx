@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import CustomButton from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
-import { v4 as uuidv4 } from 'uuid';
 import TextCard from "../UI Library/textCard/TextCard";
-
+import { Box } from "@mui/system";
+import { v4 as uuidv4 } from 'uuid';
 
 const NotesCreator = () => {
 
@@ -62,7 +62,13 @@ const NotesCreator = () => {
   }
 
   return (
-    <div>
+    <Box sx={{
+      width:'60%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
       {newNoteFlag ? <form onSubmit={(e) => handleSubmit(e)}>
         <textarea
           type="text"
@@ -78,7 +84,7 @@ const NotesCreator = () => {
         :
         <TextCard info={randomQuote}/>
       }
-    </div>
+    </Box>
   );
 }
 

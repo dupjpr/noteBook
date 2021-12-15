@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "../UI Library/button/Button";
 import CustomIconButton from '../UI Library/iconButton/CustomIconButton'
 import { trakingNote } from "../notesCreator/notesCreatorActions";
 import { headerActions } from "../header/headerActions";
 import { editList } from "./notesActions";
+import { Container } from "@mui/material";
+import { Box } from "@mui/system";
 import { v4 as uuidv4 } from 'uuid';
 
 const Notes = () => {
@@ -29,7 +30,10 @@ const Notes = () => {
   }
 
   return (
-    <div>
+    <Box sx={{
+      width: '40%',
+      height: '100%'
+    }}>
       {notes.map(({ note, id }) => (
         <div
           key={uuidv4()}
@@ -42,7 +46,7 @@ const Notes = () => {
             label='delete'
           />
         </div>))}
-    </div>
+    </Box>
   );
 }
 
