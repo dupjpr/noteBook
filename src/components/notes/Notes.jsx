@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from '../UI Library/button/CustomButton'
+import CustomIconButton from '../UI Library/iconButton/CustomIconButton'
 import { trakingNote } from "../notesCreator/notesCreatorActions";
 import { headerActions } from "../header/headerActions";
 import { idNoteSelect, setStatusButton } from "./notesActions";
@@ -42,10 +43,9 @@ const Notes = () => {
 
   return (
     <div>
-      <Button
-        title='Delet'
+      <CustomIconButton
         event={handleDelete}
-        icon={<i className="far fa-file"></i>}
+        icon={<i className="fas fa-trash"></i>}
         status={buttonStatus}
       />
       {renderList}
