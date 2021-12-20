@@ -1,17 +1,17 @@
 import { Button } from "@mui/material";
 
-const CustomButton = ({ color, title, event, type, icon }) => {
+const CustomIconButton = ({ title, color, event, type, icon, label }) => {
 
   return (
     <Button
       color={color}
       onClick={event}
       type={type}
-      startIcon={icon}
+      aria-label={label}
     >
-      {title}
+      {title} {icon}
     </Button>
   );
 }
 
-export default CustomButton;
+export default CustomIconButton;

@@ -5,6 +5,8 @@ const NEW_NOTE_FLAG = 'NEW_NOTE_FLAG';
 const TRAKING_NOTE = 'TRAKING_NOTE';
 const SAVE_NOTE = 'SAVE_NOTE';
 const NEW_LIST = 'NEW_LIST';
+const NOTE_ID = 'NOTE_ID';
+const BUTTON_STATUS = 'BUTTON_STATUS';
 
 export { 
   LOADING, 
@@ -13,6 +15,8 @@ export {
   NEW_NOTE_FLAG,
   TRAKING_NOTE,
   SAVE_NOTE,
-  NEW_LIST
+  NEW_LIST,
+  NOTE_ID,
+  BUTTON_STATUS
  };
  

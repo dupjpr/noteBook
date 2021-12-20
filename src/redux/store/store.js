@@ -7,7 +7,9 @@ const initialState = {
   loadingFlag: true,
   newNoteFlag: false,
   textInput: '',
-  notes: []
+  notes: [],
+  noteID: '',
+  buttonStatus: true,
 }
 
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
