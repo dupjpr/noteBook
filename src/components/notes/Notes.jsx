@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI Library/button/Button";
 import { trakingNote } from "../notesCreator/notesCreatorActions";
 import { headerActions } from "../header/headerActions";
-import { editList, idNoteSelect } from "./notesActions";
+import { idNoteSelect, setStatusButton } from "./notesActions";
 import { v4 as uuidv4 } from 'uuid';
 
 const Notes = () => {
@@ -11,37 +10,45 @@ const Notes = () => {
   const storeData = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const { notes } = storeData;
+  const { notes, buttonStatus, noteID } = storeData;
+
+  const notesKey = Object.keys(localStorage);
 
   const handleEdit = (id) => {
     const filterNote = notes.filter((item) => item.id === id);
     dispatch(trakingNote(filterNote[0].note));
-    // const newList = notes.filter((item) => item.id !== id);
-    // dispatch(editList(newList));
-    // localStorage.removeItem(id)
     dispatch(headerActions(true));
     dispatch(idNoteSelect(id));
+    dispatch(setStatusButton(false));
   };
 
-  // const handleDelete = (id) => {
-  //   const newList = notes.filter((item) => item.id !== id);
-  //   localStorage.removeItem(id)
-  //   dispatch(editList(newList));
-  // }
+  const handleDelete = () => {
+    localStorage.removeItem(noteID)
+    dispatch(setStatusButton(true));
+    dispatch(trakingNote(''));
+    dispatch(headerActions(false));
+  }
+
+  const renderList = notesKey.map((key) => {
+    const objectNote = JSON.parse(localStorage.getItem(key));
+    const { note, id } = objectNote;
+    return <div
+      key={uuidv4()}
+      onClick={() => handleEdit(id)}
+    >
+      {note}
+    </div>
+  });
 
   return (
     <div>
-      {/* <Button
-        title='delete'
-        event={() => handleDelete(deleteID)}
-        icon={<i className="far fa-trash-alt"></i>}
-      /> */}
-      {notes.map(({ note, id }) => (
-        <div
-          key={uuidv4()}
-        >
-          <div onClick={() => handleEdit(id)}>{note}</div>
-        </div>))}
+      <Button
+        title='Delet'
+        event={handleDelete}
+        icon={<i className="far fa-file"></i>}
+        status={buttonStatus}
+      />
+      {renderList}
     </div>
   );
 }

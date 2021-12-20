@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Button from "../UI Library/button/Button";
 import { trakingNote, submitNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
-import { idNoteSelect } from "../notes/notesActions";
+import { idNoteSelect, setStatusButton } from "../notes/notesActions";
 import { v4 as uuidv4 } from 'uuid';
 
 const NotesCreator = () => {
@@ -16,25 +16,17 @@ const NotesCreator = () => {
   const notesKey = Object.keys(localStorage);
 
   const randomQuote = () => {
-
     const indexQuote = Math.floor(Math.random() * data.length);
     const quote = data[indexQuote];
     return quote
-
   };
 
-  let notesLength = notes.length;
-
-  console.log(notesLength);
-
   useEffect(() => {
-
     notesKey.forEach((key) => {
       const stringNote = localStorage.getItem(key);
       const objectNote = JSON.parse(stringNote);
       dispatch(submitNote(objectNote));
     });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -43,61 +35,40 @@ const NotesCreator = () => {
     dispatch(trakingNote(target.value));
   };
 
-  const handleSubmit = (e) => {
+  const jsonConfig = (noteToStore) => {
+    textInput && dispatch(submitNote(noteToStore));
+    const stringNote = JSON.stringify(noteToStore);
+    textInput && localStorage.setItem(`${noteToStore.id}`, stringNote);
+    dispatch(setStatusButton(true))
+  };
 
-    e.preventDefault();
-
-    if (notesLength) {
-
-      
-      const check = notes.some(({id}) => id === noteID );
-      
-      console.log(check);
-      dispatch(idNoteSelect(''));
-      
-      if(check){
-        const storeNote = JSON.parse(localStorage.getItem(noteID));
-        storeNote.note = textInput;
-        textInput && dispatch(submitNote(storeNote));
-        const stringNote = JSON.stringify(storeNote);
-        textInput && localStorage.setItem(`${noteID}`, stringNote)
-      } else {
-        const noteToStore = {
-          id: uuidv4(),
-          note: textInput,
-          date: new Date()
-        }
-  
-        textInput && dispatch(submitNote(noteToStore));
-  
-        const stringNote = JSON.stringify(noteToStore);
-  
-        textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
-      }
-
-
-    } else {
-
-      const noteToStore = {
-        id: uuidv4(),
-        note: textInput,
-        date: new Date()
-      }
-
-      textInput && dispatch(submitNote(noteToStore));
-
-      const stringNote = JSON.stringify(noteToStore);
-
-      textInput && localStorage.setItem(`${noteToStore.id}`, stringNote)
-
-      console.log('no hay nada');
+  const newNote = () => {
+    const noteToStore = {
+      id: uuidv4(),
+      note: textInput,
+      date: new Date()
     }
+    jsonConfig(noteToStore);
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (notes.length) {
+      const check = notes.some(({ id }) => id === noteID);
+      dispatch(idNoteSelect(''));
+      if (check) {
+        const noteToStore = JSON.parse(localStorage.getItem(noteID));
+        noteToStore.note = textInput;
+        jsonConfig(noteToStore);
+      } else {
+        newNote();
+      };
+    } else {
+      newNote();
+    };
     dispatch(trakingNote(''));
-
     textInput && dispatch(headerActions(false));
-
-  }
+  };
 
   return (
     <div>

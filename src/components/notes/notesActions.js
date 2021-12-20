@@ -1,31 +1,30 @@
 import {
-  NEW_LIST,
-  NOTE_ID
+  NOTE_ID,
+  BUTTON_STATUS
 } from '../../utilities/constants.js';
 
 const actions = {
-  edit: (data) => ({
-    type: NEW_LIST,
-    payload: data
-  }),
   noteID: (data) => ({
     type: NOTE_ID,
+    payload: data
+  }),
+  status: (data) => ({
+    type: BUTTON_STATUS,
     payload: data
   })
 }
 
-const { edit, noteID } = actions;
-
-const editList = (data) => {
-  return dispatch => {
-    dispatch(edit(data))
-  }
-}
+const { noteID, status } = actions;
 
 const idNoteSelect = (data) => {
   return dispatch => {
     dispatch(noteID(data))
   }
-}
+};
 
-export { editList, idNoteSelect };
+const setStatusButton = (data) => {
+  return dispatch => {
+    dispatch(status(data))
+  }
+};
+export { idNoteSelect, setStatusButton };
