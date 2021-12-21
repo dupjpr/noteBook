@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import Button from "../UI Library/button/Button";
-import { trakingNote, submitNote } from './notesCreatorActions';
+import { trakingNote } from './notesCreatorActions';
 import { headerActions } from "../header/headerActions";
 import { idNoteSelect, setStatusButton } from "../notes/notesActions";
 import { v4 as uuidv4 } from 'uuid';
@@ -11,7 +10,7 @@ const NotesCreator = () => {
   const storeData = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const { data, newNoteFlag, textInput, notes, noteID } = storeData;
+  const { data, newNoteFlag, textInput, noteID } = storeData;
 
   const notesKey = Object.keys(localStorage);
 
@@ -21,14 +20,14 @@ const NotesCreator = () => {
     return quote
   };
 
-  useEffect(() => {
-    notesKey.forEach((key) => {
+  const retreveLocalStorage = () => {
+    const dataLocalStorage = notesKey.map((key) => {
       const stringNote = localStorage.getItem(key);
       const objectNote = JSON.parse(stringNote);
-      dispatch(submitNote(objectNote));
+      return objectNote
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    return dataLocalStorage
+  };
 
   const handleChange = (e) => {
     const target = e.target;
@@ -36,7 +35,6 @@ const NotesCreator = () => {
   };
 
   const jsonConfig = (noteToStore) => {
-    textInput && dispatch(submitNote(noteToStore));
     const stringNote = JSON.stringify(noteToStore);
     textInput && localStorage.setItem(`${noteToStore.id}`, stringNote);
     dispatch(setStatusButton(true))
@@ -53,8 +51,8 @@ const NotesCreator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (notes.length) {
-      const check = notes.some(({ id }) => id === noteID);
+    if (notesKey.length) {
+      const check = retreveLocalStorage().some(({ id }) => id === noteID);
       dispatch(idNoteSelect(''));
       if (check) {
         const noteToStore = JSON.parse(localStorage.getItem(noteID));

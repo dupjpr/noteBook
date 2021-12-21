@@ -7,16 +7,14 @@ const actions = {
     type: NEW_NOTE_FLAG,
     payload: booleanFlag
   })
-}
+};
 
 const { newNote } = actions;
 
 const headerActions = (boolean) => {
   return dispatch => {
-
     dispatch(newNote(boolean))
-
   }
-}
+};
 
 export { headerActions };
