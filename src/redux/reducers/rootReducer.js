@@ -4,7 +4,6 @@ import {
   LOADING,
   NEW_NOTE_FLAG,
   TRAKING_NOTE,
-  SAVE_NOTE,
   NEW_LIST,
   NOTE_ID,
   BUTTON_STATUS
@@ -38,11 +37,6 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         textInput: action.payload
-      }
-    case SAVE_NOTE:
-      return {
-        ...state,
-        notes: [...state.notes, action.payload]
       }
     case NEW_LIST:
       return {
