@@ -10,13 +10,14 @@ const Notes = () => {
   const storeData = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const { notes, buttonStatus, noteID } = storeData;
+  const { buttonStatus, noteID } = storeData;
 
   const notesKey = Object.keys(localStorage);
 
   const handleEdit = (id) => {
-    const filterNote = notes.filter((item) => item.id === id);
-    dispatch(trakingNote(filterNote[0].note));
+    const stringNote = localStorage.getItem(id);
+    const objectNote = JSON.parse(stringNote);
+    dispatch(trakingNote(objectNote.note));
     dispatch(headerActions(true));
     dispatch(idNoteSelect(id));
     dispatch(setStatusButton(false));
